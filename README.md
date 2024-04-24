@@ -25,6 +25,7 @@ You can add the answers to this md file in a cloned GitHub repository or use ano
 1) Read in the datafiles using a statistical software package (R or Python preferred).
 2) Calculate a new indicator "GDP per capita" for all country/year pairs in the database for which this is possible.
 3) Could you calculate the GDP per capita for each country/year pair in the database? Explain why (not).
+	- I am able to calculate the GDP per capital for each country/year pair in the database when both GDP and population data was presented for each pair. I first transform both dataset into long format, then performed inner_join to merge the data, then did the calculation of "GDP/Population" for each row (Country + year combination) and saved the result in a column called "GDP per capita".
 4) If you couldn't calculate GDP per capita for all combinations, explain how you could improve coverage in one paragraph.
 
 ## Question 2
@@ -33,14 +34,20 @@ Note: Errors may have been added to the population and GDP data in the data in t
 1) Calculate the average GDP per capita for the regions AFE (Africa Eastern and Southern) and AFW (Africa Western and Central) starting from the country level data. The definitions of the regions (which country belong to the two regions) are available in the file WB_groups.csv. This file contains all countries and regions as well as a column that specifies the region to which the country belongs.
 2) Calculate summary statistics and visualize the differences and trends of GDP per capita within and between these two regions. Use an appropriate visualization to show trends over time as well as the differences between the two regions.
 3) Explain which weight you used for the calculation of the regional averages and why.
-4) Do the regional averages you have calculated represent all countries in these two regions? Explain why (not). Explain how could you improve this in one paragraph? 
+	- When calculating the average GDP per capita, I used the total GDP within the region divided by total population, for each year. (Now writing the answer of the question, I noticed that I might have understood the question in a different way, where the question is interested in an average GDP across the entire time span).
+4) Do the regional averages you have calculated represent all countries in these two regions Explain why (not). Explain how could you improve this in one paragraph? 
+	- The regional averages I calculated may not represent all countries in these two regions, because of the incompleteness or the scarcity of the GDP data, which will cause incorrect weights and eventually inaccurate average GDPs. For example, Angola does not have any GDP data before 1979.
 5) What is the time span for which you calculated the regional averages? Why did you chose this time span? Explain in one paragraph.
 6) Plot the AFW regional average together with all the countries in the AFW region in one plot. Compare the countries and comment on trends you observe. Please summarize the findings in one paragraph.
 
 ## Question 3
 1) Propose data quality tests for the GDP data and implement these in a script. Describe the tests you perform and explain why.
+	- Run basic summary statistics when reading in the dataset, review the distribution, range, etc.
 2) Did you find any issues with the data?
+	- Yes, I found duplicated and incorrect data in WB_groups.csv. In the file, the 5th column was unnamed and has income-level groups. This may be caused by incorrect merging.
 3) Describe a test for outliers in the data and implement it.
+	- One way to visually inspect the data for selected country/region. For example, box plot graph, distribution graph.
+	- Can also set a threshold based on standard deviation, and flag data away from, say 3* std.
 4) Did you find any outliers? If so, describe how you would proceed\deal with these outliers before publishing the data.
 
 ## End of test
